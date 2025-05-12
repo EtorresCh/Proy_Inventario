@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <?php require_once '../html/MainHead.php';?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MPCH: Equipo </title>
+    <title>MPCH: Categoria </title>
 </head>
 <body>
     <?php require_once '../html/MainHeader.php';?> 
