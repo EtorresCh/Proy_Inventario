@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <link rel="icon" type="image/png" href="static/illustrations/logomuni3.png">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <link href="./dist/css/tabler.min.css?1692870487" rel="stylesheet"/>
     <link href="./dist/css/tabler-flags.min.css?1692870487" rel="stylesheet"/>
@@ -38,7 +39,15 @@
                   <form action="./" method="POST" autocomplete="off" novalidate>
                     <div class="mb-3">
                       <label class="form-label">Correo Electronico</label>
-                      <input type="email" class="form-control" placeholder="tu@email.com" autocomplete="off" id="usu_corr" name="usu_corr">
+                        <div class="input-icon mb-3">
+                          <input type="text" value="" class="form-control" placeholder="Nombre Usuario">
+                          <span class="input-icon-addon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
+                              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                              <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                            </svg>
+                          </span>
+                        </div>
                     </div>
                     <div class="mb-2">
                       <label class="form-label">Contraseña</label>
