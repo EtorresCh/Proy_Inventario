@@ -27,16 +27,18 @@
                 <input type="date" class="form-control">
             </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-12">
             <div class="mb-3">
                 <label class="form-label">Observacion:<span  style="color:red"> *</span></label>
-                <textarea  class="form-control" rows="1" maxlength="400"></textarea>
+                <textarea  class="form-control" rows="2" maxlength="400"></textarea>
             </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
             <div class="mb-3">
                 <label class="form-label">Proveedor:<span style="color:red"> *</span></label>
-                <input type="text" class="form-control">
+                <select class="form-select">
+                <option >Seleccione proveedor...</option>
+                </select>
             </div>
             </div>
             <div class="col-lg-6">
@@ -58,12 +60,6 @@
                 <select class="form-select">
                 <option >Seleccione rol de Usuario ...</option>
                 </select>
-            </div>
-            </div>
-            <div class="col-lg-6">
-            <div class="mb-3">
-                <label class="form-label">QR/CB:<span style="color:red"> *</span></label>
-                <input type="number" class="form-control">
             </div>
             </div>
         </div>

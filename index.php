@@ -17,7 +17,11 @@
       	--tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
       }
       body {
-      	font-feature-settings: "cv03", "cv04", "cv11";
+          overflow: hidden;
+          background-image: url('./static/illustrations/chiclayo.jpg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
       }
     </style>
   </head>
