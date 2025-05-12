@@ -1,3 +1,7 @@
+<?php
+  require_once '../../conf/conexion.php';
+  if (isset($_SESSION["usu_id"])){
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,3 +104,8 @@
     <script type="text/javascript" src="adminproveedor.js"></script>
 </body>
 </html>
+<?php
+  }else{
+    header("Location:".conectar::ruta()."view/404/");
+  }
+?>

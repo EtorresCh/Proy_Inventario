@@ -13,9 +13,11 @@
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                     <span class="avatar avatar-sm" style="background-image: url(../../static/illustrations/foto_perfil.png)"></span>
                     <div class="d-none d-xl-block ps-2">
-                        <div>Admin</div>
-                        <div class="mt-1 small text-secondary">Administrador</div>
+                        <div><?php echo $_SESSION['usu_nom'];?></div>
+                        <div class="mt-1 small text-secondary"><?php echo $_SESSION['usu_apep'];?></div>
                     </div>
+                    <input type="hidden" id="usu_idx" value="<?php echo $_SESSION["usu_id"]; ?>">
+                    <input type="hidden" id="rol_idx" value="<?php echo $_SESSION["rol_id"]; ?>">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <a href="../Usu_Perfil/" class="dropdown-item d-lg-inline-block">
@@ -41,6 +43,22 @@
                         </span>
                     </a>
                 </li>
+                 <?php
+                if($_SESSION["rol_id"]== 1){
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Usu_Escanear/" >
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-camera-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.5 20h-8.5a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v4" /><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M22 22l-5 -5" /><path d="M17 22l5 -5" /></svg>
+                        </span>
+                        <span class="nav-link-title">
+                              Escanear
+                        </span>
+                    </a>
+                </li>
+                <?php  
+                } else{
+                ?>
                 <li class="nav-item">
                     <a class="nav-link" href="../Admin_Usuario/" >
                         <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -91,16 +109,9 @@
                         </span>
                     </a>
                 </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="../Usu_Escanear/" >
-                        <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-camera-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.5 20h-8.5a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v4" /><path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M22 22l-5 -5" /><path d="M17 22l5 -5" /></svg>
-                        </span>
-                        <span class="nav-link-title">
-                              Escanear
-                        </span>
-                    </a>
-                </li>
+                  <?php  
+                  }
+                ?>
             </ul>
         </div>
     </div>

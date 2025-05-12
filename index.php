@@ -1,3 +1,17 @@
+<?php
+require_once("conf/conexion.php");
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["enviar"]) && $_POST["enviar"] == "1") {
+    try {
+        require_once("models/Usuario.php");
+        $usuario = new Usuario();
+        $usuario->login();
+    } catch (Exception $e) {
+        error_log("Error en el proceso de login: " . $e->getMessage());
+        header("Location: index.php?m=3");
+        exit();
+    }
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,17 +48,55 @@
             <div class="container-tight">
               <div class="card card-md">
                 <div class="card-body">
-                  <h2 class="text-center mb-2">MUNICIPALIDAD PROVINCIAL DE CHICLAYO</h2>
-                  <div class="text-center mb-1">
+                  <h2 class="text-center mb-1">MUNICIPALIDAD PROVINCIAL DE CHICLAYO</h2>
+                  <div class="text-center mb-0">
                     <img src="./static/illustrations/Escudo_de_Chiclayo.PNG" height="120" alt="">
                   </div>
                   <h2 class="text-center mb-2">¡Bienvenido!</h2>
-                  <p class="text-center mb-4">Ingresa tus datos para Iniciar sesión.</p>
+                  <p class="text-center mb-2">Ingresa tus datos para Iniciar sesión.</p>
                   <form action="./" method="POST" autocomplete="off" novalidate>
-                    <div class="mb-3">
+                     <?php
+                      if (isset($_GET["m"])) {
+                          switch ($_GET["m"]) {
+                              case 1:
+                                  ?>
+                                   <div class="alert alert-warning alert-dismissible" role="alert">
+                                    <div class="d-flex">
+                                      <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.24 3.957l-8.422 14.06a1.989 1.989 0 0 0 1.7 2.983h16.845a1.989 1.989 0 0 0 1.7 -2.983l-8.423 -14.06a1.989 1.989 0 0 0 -3.4 0z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+                                      </div>
+                                      <div>
+                                        Error! Datos incorrectos
+                                      </div>
+                                    </div>
+                                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                                  </div>
+                                  <?php
+                                  break;
+                              case 2:
+                                  ?>
+                                  <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <div class="d-flex">
+                                      <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
+                                      </div>
+                                      <div>
+                                        Error!  Campos vacios
+                                      </div>
+                                    </div>
+                                    <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+                                  </div>
+                                  <?php
+                                  break;
+                              default:
+                            break;
+                          }
+                      }
+                      ?>
+                    <div class="mb-2">
                       <label class="form-label">Correo Electronico</label>
-                        <div class="input-icon mb-3">
-                          <input type="text" value="" class="form-control" placeholder="Nombre Usuario">
+                        <div class="input-icon mb-1">
+                          <input type="text"  class="form-control" placeholder="Nombre Usuario" id="usu_corr" name="usu_corr">
                           <span class="input-icon-addon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1">
                               <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
@@ -53,7 +105,7 @@
                           </span>
                         </div>
                     </div>
-                    <div class="mb-2">
+                    <div>
                       <label class="form-label">Contraseña</label>
                       <div class="input-group input-group-flat">
                         <input type="password" class="form-control" placeholder="Tu contraseña..." autocomplete="off" id="usu_pass" name="usu_pass">
@@ -90,6 +142,7 @@
                     </div>
                     <div class="form-footer">
                       <button type="submit" class="btn btn-info w-100">
+                        <input type="hidden" name ="enviar" class="form-control" value="1">
                         <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-login-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" /><path d="M3 12h13l-3 -3" /><path d="M13 15l3 -3" /></svg>
                         Ingresar
                       </button>
@@ -105,24 +158,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./dist/js/tabler.min.js?1692870487" defer></script>
     <script src="./dist/js/demo.min.js?1692870487" defer></script>
-    <script>
-      $(document).ready(function () {
-        $('#togglePassword').on('click', function (e) {
-          e.preventDefault();
-          const input = $('#usu_pass');
-          const iconShow = $('#icon-show');
-          const iconHide = $('#icon-hide');
-          const isVisible = input.attr('type') === 'text';
-          input.attr('type', isVisible ? 'password' : 'text');
-          if (isVisible) {
-            iconShow.removeClass('d-none');
-            iconHide.addClass('d-none');
-          } else {
-            iconShow.addClass('d-none');
-            iconHide.removeClass('d-none');
-          }
-        });
-      });
-    </script>
+    <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
