@@ -1,5 +1,5 @@
 <div class="modal modal-blur fade" id="modalarea" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
         <div class="modal-header">
         <h5 class="modal-title">Registrar nuevo Area</h5>
@@ -10,6 +10,12 @@
             <div class="col-lg-12">
                 <div class="mb-3">
                     <label class="form-label">Nombre:<span  style="color:red"> *</span></label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+             <div class="col-lg-12">
+                <div class="mb-3">
+                    <label class="form-label">Gerente :<span  style="color:red"> *</span></label>
                     <input type="text" class="form-control">
                 </div>
             </div>

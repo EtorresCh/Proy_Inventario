@@ -46,10 +46,8 @@
               <div class="col-lg-4">
                 <div class="mb-3">
                   <label class="form-label">Rol:<span style="color:red"> *</span></label>
-                  <select class="form-select">
-                    <option >Seleccione rol de Usuario ...</option>
-                    <option value="1">Admin</option>
-                    <option value="2">Empleado</option>
+                  <select class="form-select select2"  style="width:100%" data-placeholder="Seleccione">
+                   <option label="Seleccione"></option>
                   </select>
                 </div>
               </div>

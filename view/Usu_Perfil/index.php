@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <?php require_once '../html/MainHead.php';?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MPCH: Perfil</title>
 </head>
 <body>
     <?php require_once '../html/MainHeader.php';?> 
@@ -47,52 +47,50 @@
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
                                                     <label class="form-label">Nombres</label>
-                                                    <input type="text" class="form-control" disabled="">
+                                                    <input type="text" class="form-control" disabled=""  name="usu_nom" id="usu_nom" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
                                                     <label class="form-label">Apellido Paterno</label>
-                                                    <input type="text" class="form-control" disabled="" >
+                                                    <input type="text" class="form-control" disabled="" name="usu_apep" id="usu_apep" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
                                                     <label class="form-label">Materno</label>
-                                                    <input type="text" class="form-control" disabled="">
+                                                    <input type="text" class="form-control" disabled="" name="usu_apem" id="usu_apem">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="mb-5">
                                                     <label class="form-label">Correo</label>
-                                                    <input type="text" class="form-control" disabled="" >
+                                                    <input type="text" class="form-control" disabled=""  name="usu_corr" id="usu_corr">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
                                                     <label class="form-label">Contraseña</label>
-                                                    <input type="password" class="form-control" >
+                                                    <input type="password" class="form-control" name="usu_pass" id="usu_pass" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
                                                     <label class="form-label">Telefono</label>
-                                                    <input type="text" class="form-control" disabled="" >
+                                                    <input type="text" class="form-control" disabled="" name="telefono" id="telefono">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
                                                     <label class="form-label">Rol</label>
-                                                    <input type="text" class="form-control" disabled="" >
+                                                    <input type="text" class="form-control" disabled="" name="rol_id"  id="rol_id">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
-                                                    <label class="form-label">Dni</label>
-                                                    <input type="text" class="form-control" disabled="" >
-                                                    </div>
-                                                </div>
-                                               
+                                                    <label class="form-label">Sexo</label>
+                                                    <input type="text" class="form-control" disabled="" name="usu_sex"  id="usu_sex">
+                                                </div>                  
                                             </div>
                                         </div>
                                     </div>
@@ -111,6 +109,7 @@
         </div>  
     </div> 
     <?php require_once '../html/MainJs.php';?>  
+    <script type="text/javascript" src="usuperfil.js"></script>
 </body>
 </html>
 <?php
