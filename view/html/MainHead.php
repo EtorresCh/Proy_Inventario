@@ -8,5 +8,5 @@
 <link href="../../dist/css/tabler-vendors.min.css?1692870487" rel="stylesheet"/>
 <link href="../../dist/css/demo.min.css?1692870487" rel="stylesheet"/>
 <link href="../../dist/libs/select2/css/select2.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+<link href="../../dist/css/datatable.css" rel="stylesheet"/>

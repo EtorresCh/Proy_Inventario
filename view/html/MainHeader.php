@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-md navbar-overlap d-print-none" data-bs-theme="dark" >
+<header class="navbar navbar-expand-md navbar-overlap d-print-none" data-bs-theme="dark">
     <div class="container-xl">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
                 </a>
                 <input type="hidden" id="usu_idx" value="<?php echo $_SESSION["usu_id"]; ?>">
                 <input type="hidden" id="rol_idx" value="<?php echo $_SESSION["rol_id"]; ?>">
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" >
                     <a href="../Usu_Perfil/" class="dropdown-item d-lg-inline-block">
                         <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
                         Perfil
@@ -43,9 +43,6 @@
                         </span>
                     </a>
                 </li>
-                 <?php
-                if($_SESSION["rol_id"]== 1){
-                ?>
                 <li class="nav-item">
                     <a class="nav-link" href="../Usu_Escanear/" >
                         <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -56,7 +53,10 @@
                         </span>
                     </a>
                 </li>
-                <?php  
+                <?php
+                if($_SESSION["rol_id"]== 1){
+                ?>
+                <?php
                 } else{
                 ?>
                 <li class="nav-item">

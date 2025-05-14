@@ -7,13 +7,13 @@
         </div>
         <div class="modal-body">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-4">
             <div class="mb-3">
                 <label class="form-label">Denominacion:<span  style="color:red"> *</span></label>
                 <input type="text" class="form-control">
             </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
             <div class="mb-3">
                 <label class="form-label">Categoria:<span style="color:red"> *</span></label>
                 <select class="form-select">
@@ -21,7 +21,7 @@
                 </select>
             </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
             <div class="mb-3">
                 <label class="form-label">Fecha Inventario:<span style="color:red"> *</span></label>
                 <input type="date" class="form-control">
@@ -56,9 +56,9 @@
             </div>
             <div class="col-lg-6">
             <div class="mb-3">
-                <label class="form-label">Marca:<span style="color:red"> *</span></label>
+                <label class="form-label">Estado:<span style="color:red"> *</span></label>
                 <select class="form-select">
-                <option >Seleccione rol de Usuario ...</option>
+                <option >Seleccione estado del Equipo ...</option>
                 </select>
             </div>
             </div>

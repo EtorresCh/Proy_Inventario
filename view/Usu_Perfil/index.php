@@ -28,7 +28,7 @@
                 <div class="col-lg-12">
                     <div class="row row-cards">
                         <div class="col-12">
-                            <form class="card ">
+                            <form class="card" method="POST">
                                 <div class="card-body">
                                     <div class="row row-cards">
                                         <div class="col-md-4 text-center">
@@ -83,7 +83,7 @@
                                                 <div class="col-md-4">
                                                     <div class="mb-5">
                                                     <label class="form-label">Rol</label>
-                                                    <input type="text" class="form-control" disabled="" name="rol_id"  id="rol_id">
+                                                    <input type="text" class="form-control" disabled="" name="tipo_rol"  id="tipo_rol">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">

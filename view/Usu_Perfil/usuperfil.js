@@ -9,7 +9,7 @@ $(document).ready(function(){
         $('#usu_corr').val(data.usu_corr);
         $('#usu_pass').val(data.usu_pass);
         $('#telefono').val(data.telefono);
-        $('#usu_sex').val(data.usu_sex).trigger("change");
+        $('#usu_sex').val(data.usu_sex);
         $('#tipo_rol').val(data.tipo_rol);
     });
 });

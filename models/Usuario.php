@@ -66,7 +66,7 @@
                 usuario.usu_sex,
                 rol_usuario.tipo_rol
                 FROM usuario
-                INNER JOIN rol_usuario ON usuario.usu_id = rol_usuario.rol_id
+                INNER JOIN rol_usuario ON usuario.rol_id = rol_usuario.rol_id
                 WHERE usuario.est = 1 AND usuario.usu_id = ?;";
              $sql=$conectar->prepare($sql);
              $sql->bindValue(1, $usu_id);
