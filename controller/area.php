@@ -8,6 +8,7 @@ switch ($_GET["op"]) {
         $data= Array();
         foreach($datos as $row) {
             $sub_array = array();
+            $sub_array[] = '<input type="checkbox" class="area-checkbox" value="' . htmlspecialchars($row["area_id"]) . '">';
             $sub_array[] = $row["area_nom"];
             $sub_array[] = $row["area_ger"];
             $sub_array[] = '<button type="button"  onClick="editar(' . $row["area_id"] . ');" id="' . $row["area_id"] . '" class="btn btn-warning btn-xs d-flex text-center" style="width: 40px; height: 40px; padding: 0;">
@@ -33,5 +34,16 @@ switch ($_GET["op"]) {
             "iTotalDisplayRecords"=>count($data),
             "aaData"=>$data);
         echo json_encode($result);  
-        break;  
+    break;
+    case "eliminar_grupo":
+        $ids = isset($_POST['ids']) ? $_POST['ids'] : [];
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $area->delete_area(intval($id));
+            }
+            echo json_encode(['status' => 'ok']);
+        } else {
+            echo json_encode(['status' => 'no_ids']);
+        }
+    break;  
 }

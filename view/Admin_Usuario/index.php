@@ -9,7 +9,17 @@
     <?php require_once '../html/MainHead.php';?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Municipalidad Provincial de Chiclayo: Equipo</title>
-    
+    <style>
+      .swal2-container {
+        background: rgba(255, 255, 255, 0.05) !important; /* un toque de blanco translúcido */
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+      .swal2-popup {
+        background: rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1) !important;
+      }
+    </style>
 </head>
 <body>
     <?php require_once '../html/MainHeader.php';?> 

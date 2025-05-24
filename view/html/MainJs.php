@@ -8,6 +8,12 @@
 <script src="../../dist/js/tabler.min.js?1692870487" defer></script>
 <script src="../../dist/js/demo.min.js?1692870487" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const currentPath = window.location.pathname;

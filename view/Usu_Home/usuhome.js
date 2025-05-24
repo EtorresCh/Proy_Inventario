@@ -1,25 +1,5 @@
 var usu_id = $('#usu_idx').val();
 $(document).ready(function(){
-    $.post("../../controller/equipo.php?op=activo", function(data){
-        data = JSON.parse(data);
-        $('#lblactivo').html(data.activo);
-    });
-    $.post("../../controller/equipo.php?op=mantenimiento", function(data){
-        data = JSON.parse(data);
-        $('#lblmantenimiento').html(data.mantenimiento);
-    });
-    $.post("../../controller/equipo.php?op=ultimo", function(data){
-        data = JSON.parse(data); 
-        if (data) {
-            $('#lblultimo').html(data.equi_denom);
-        } else {
-            $('#lblultimo').html("No se encontró el último equipo.");
-        }
-    });
-    $.post("../../controller/equipo.php?op=total", function(data){
-        data = JSON.parse(data);
-        $('#lbltotal').html(data.total);
-    });
     $('#equipo_data').DataTable({
         "aProcessing": true,
         "aServerSide": true,
@@ -72,6 +52,26 @@ $(document).ready(function(){
             }
 		},
 	}); 
+    $.post("../../controller/equipo.php?op=activo", function(data){
+        data = JSON.parse(data);
+        $('#lblactivo').html(data.activo);
+    });
+    $.post("../../controller/equipo.php?op=mantenimiento", function(data){
+        data = JSON.parse(data);
+        $('#lblmantenimiento').html(data.mantenimiento);
+    });
+    $.post("../../controller/equipo.php?op=ultimo", function(data){
+        data = JSON.parse(data); 
+        if (data) {
+            $('#lblultimo').html(data.equi_denom);
+        } else {
+            $('#lblultimo').html("No se encontró el último equipo.");
+        }
+    });
+    $.post("../../controller/equipo.php?op=total", function(data){
+        data = JSON.parse(data);
+        $('#lbltotal').html(data.total);
+    });
     $.post("../../controller/equipo.php?op=por_categoria", function(data){
         data = JSON.parse(data);
         let categorias = [];
@@ -183,4 +183,54 @@ $(document).ready(function(){
             }]
         });
     });
+    $.post("../../controller/equipo.php?op=equipos_por_mes", function(data) {
+        data = JSON.parse(data);
+
+        let meses = [];
+        let cantidades = [];
+
+        data.forEach(function(item) {
+            meses.push(item.mes);
+            cantidades.push(parseInt(item.cantidad));
+        });
+
+        Highcharts.chart('grafico_mensual', {
+            chart: {
+                type: 'column'  // ← Cambiado a barras verticales
+            },
+            title: {
+                text: null
+            },
+            xAxis: {
+                categories: meses,
+                title: {
+                    text: 'Mes'
+                },
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Cantidad de Equipos'
+                },
+                allowDecimals: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.key}</b><br>',
+                pointFormat: '{series.name}: {point.y}'
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Equipos Registrados',
+                data: cantidades,
+                color: '#34bfa3'
+            }]
+        });
+    });
+
 });  

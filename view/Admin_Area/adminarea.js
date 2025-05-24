@@ -27,26 +27,15 @@ function guardaryeditar() {
             console.error("Error AJAX:", error);
         }
     });
+    
 }
 
 $(document).ready(function(){
-    $('#area_data').DataTable({
+    var table = $('#area_data').DataTable({
         "aProcessing": true,
         "aServerSide": true,
         dom: 'Bfrtip',
         buttons: [
-            {
-                extend: 'copyHtml5',
-                text: 'Copiar',
-            },
-            {
-                extend: 'excelHtml5',
-                text: 'Exportar Excel',
-            },
-            {
-                extend: 'csvHtml5',
-                text: 'Exportar CSV',
-            }
         ],
         "ajax":{
             url: "../../controller/area.php?op=listar",
@@ -55,8 +44,8 @@ $(document).ready(function(){
 		"bDestroy": true,
 		"responsive": true,
 		"bInfo":true,
-		"iDisplayLength": 15,
-	    "order": [[ 0, "asc" ]],
+	    "iDisplayLength": parseInt($('#cantidad_registros').val()),
+	    "order": [[0, "desc"]],
 	    "language": {
             "sProcessing":     "Procesando...",
             "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -81,8 +70,70 @@ $(document).ready(function(){
                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
             }
 		},
-	});   
+	}); 
+    $('#cantidad_registros').on('input change', function () {
+        let val = parseInt($(this).val());
+        if (isNaN(val) || val < 1) {
+            val = 1;
+        } else if (val > 25) {
+            val = 25;
+        }
+        $(this).val(val);
+        table.page.len(val).draw();
+    });
+
+    $('#buscar_registros').on('input', function () {
+        table.search(this.value).draw();
+    }); 
+     $('#area_id_all').on('change', function () {
+        let isChecked = $(this).is(':checked');
+        $('.area-checkbox').prop('checked', isChecked);
+    });  
+    
+    
+}); 
+/* Contador de check*/ 
+function actualizarContadorSeleccionados() {
+    let total = $('.area-checkbox:checked').length;
+    if ($('#area_id_all').is(':checked')) {
+        total = total - 1;
+    }
+    if (total < 0) total = 0;
+
+    // Actualizamos solo el número dentro del span #contador_valor
+    $('#contador_valor').text(total);
+
+    // Ahora actualizamos el texto alrededor para que tenga la gramática correcta
+    let textoAntes = '';
+    let textoDespues = '';
+    if (total === 0) {
+        textoAntes = 'Se encontraron ';
+        textoDespues = 'elementos';
+    } else if (total === 1) {
+        textoAntes = 'Se encontró ';
+        textoDespues = 'elemento';
+    } else {
+        textoAntes = 'Se encontraron ';
+        textoDespues = 'elementos';
+    }
+    // Actualizamos el texto fuera del span sin alterar su estilo
+    $('#contador_seleccionados').contents().filter(function() {
+        // Filtrar nodos de texto (tipo 3) para actualizar solo texto plano, sin tocar el span
+        return this.nodeType === 3;
+    }).each(function(i, el) {
+        if (i === 0) el.nodeValue = textoAntes;
+        if (i === 1) el.nodeValue = textoDespues;
+    });
+}
+
+$(document).on('change', '.area-checkbox', function () {
+    actualizarContadorSeleccionados();
+});
+$('#area_id_all').on('change', function () {
+    $('.area-checkbox').prop('checked', this.checked);
+    actualizarContadorSeleccionados();
 });  
+
 function editar(area_id) {
     $.post("../../controller/area.php?op=mostrar_editar",{ area_id: area_id},function(data) {
         data=JSON.parse(data);
@@ -95,33 +146,134 @@ function editar(area_id) {
     $('#lbltitulo').html('Registro de  Usuario');
 }
 
-function eliminar(usu_id) {
+function eliminar(cat_id) {
     Swal.fire({
         title: '¿Estás seguro?',
         text: "¡Esta acción no se puede deshacer!",
-        icon: 'warning',
+        imageUrl: '../../static/gif/advertencia.gif',
+        imageWidth: 100,
+        imageHeight: 100,
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, eliminarlo'
+        confirmButtonColor: 'rgb(243, 18, 18)', 
+        cancelButtonColor: '#000', 
+        confirmButtonText: 'Sí, eliminarlo',
+        backdrop: true,
+        didOpen: () => {
+        const swalBox = Swal.getPopup();
+        const topBar = document.createElement('div');
+        topBar.id = 'top-progress-bar';
+        topBar.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 5px;
+                width: 0%;
+                background-color:rgb(243, 18, 18);
+                transition: width 0.4s ease;
+            `;
+            swalBox.appendChild(topBar);
+
+            setTimeout(() => {
+                topBar.style.width = '40%';
+            }, 300);
+        }
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '../../controller/usuario.php?op=eliminar',
+              url: '../../controller/categoria.php?op=eliminar',
                 type: 'POST',
-                data: { usu_id: usu_id },
-                success: function(response) {
-                    $('#usuario_data').DataTable().ajax.reload();
-                    Swal.fire(
-                        '¡Eliminado!',
-                        'El usuario ha sido eliminado.',
-                        'success'
-                    );
+               data: { cat_id: cat_id },
+                success: function (response) {
+                    $('#categoria_data').DataTable().ajax.reload();
+                    Swal.fire({
+                        title: '¡Eliminado!',
+                        html: `
+                            <p>La categoria ha sido eliminado correctamente.</p>
+                            <div id="top-progress-bar-final" style="
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                height: 5px;
+                                width: 0%;
+                                background-color:rgb(243, 18, 18);
+                                transition: width 0.6s ease;
+                            "></div>
+                        `,
+                        imageUrl: '../../static/gif/verified.gif',
+                        imageWidth: 100,
+                        imageHeight: 100,
+                        showConfirmButton: true,
+                        confirmButtonColor: 'rgb(243, 18, 18)',
+                        backdrop: true,
+                        didOpen: () => {
+                            const bar = document.getElementById('top-progress-bar-final');
+                            setTimeout(() => {
+                                bar.style.width = '100%';
+                            }, 100);
+                        }
+                    });
+                },
+                error: function () {
+                    Swal.fire('Error', 'No se pudo eliminar el usuario.', 'error');
                 }
             });
         }
     });
 }
+
+$('#eliminar_areas').on('click', function () {
+    let seleccionados = [];
+    $('.area-checkbox:checked').each(function () {
+        seleccionados.push($(this).val());
+    });
+    if (seleccionados.length === 0) {
+        Swal.fire({
+            title: '¡Atención!',
+            text: 'Debes seleccionar al menos una Área para continuar.',
+            imageUrl: '../../static/gif/tarjeta.gif',
+            imageWidth: 100,
+            imageHeight: 100,
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: 'rgb(243, 18, 18)', 
+        });
+        return;
+    }
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esto eliminará las areas seleccionadas.',
+        imageUrl: '../../static/gif/advertencia.gif',
+        imageWidth: 100,
+        imageHeight: 100,
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        confirmButtonColor: 'rgb(243, 18, 18)', 
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: '#000', 
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '../../controller/area.php?op=eliminar_grupo',
+                type: 'POST',
+                data: { ids: seleccionados },
+                success: function (response) {
+                    Swal.fire({
+                        title: 'Eliminadas',
+                        text: 'Las areas fueron eliminadas correctamente.',
+                        imageUrl: '../../static/gif/verified.gif',
+                        imageWidth: 100,
+                        imageHeight: 100,
+                        confirmButtonText: 'Entendido',
+                        confirmButtonColor: 'rgb(243, 18, 18)', 
+                    });
+                    $('#area_data').DataTable().ajax.reload();
+                },
+                error: function () {
+                    Swal.fire('Error', 'No se pudieron eliminar.', 'error');
+                }
+            });
+        }
+    });
+});
 
 function nuevo(){
     $('#lbltitulo').html('Nuevo Usuario');

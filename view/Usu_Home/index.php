@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <?php require_once '../html/MainHead.php';?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Municipalidad Provincial de Chiclayo</title>
 </head>
 <body>
     <?php require_once '../html/MainHeader.php';?> 
@@ -35,7 +35,7 @@
                     </svg>
                   </div>
                   <div class="card-body">
-                      <h3 class="card-title text-warning">Equipos Activos</h3>
+                      <h3 class="card-title text-yellow">Equipos Activos</h3>
                       <div class="row text-center">
                         <div class="col-lg-6">
                           <img style ="height:60px;" src="../../static/gif/computadora.gif" alt="Cargando..." />
@@ -124,9 +124,22 @@
                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-building-community"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8" /><path d="M13 7l0 .01" /><path d="M17 7l0 .01" /><path d="M17 11l0 .01" /><path d="M17 15l0 .01" /></svg>
                   </div>
                   <div class="card-body">
-                    <h3 class="card-title text-secondary">Equipos Activos por Area</h3>
+                    <h3 class="card-title text-secondary">Equipos Activos por área</h3>
                     <div class="row text-center">
                       <div id="grafico_area" style="height: 200px;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-lg-4">
+                <div class="card">
+                  <div class="ribbon ribbon-top bg-purple">
+                   <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-clock"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.5 21h-4.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h10" /><path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M18 16.5v1.5l.5 .5" /></svg>
+                  </div>
+                  <div class="card-body">
+                    <h3 class="card-title text-purple ">Equipos Registrados <span class="text-secondary"> (Ultimos 6 Meses)</span> </h3>
+                    <div class="row text-center">
+                      <div id="grafico_mensual" style="height: 200px;"></div>
                     </div>
                   </div>
                 </div>
@@ -164,8 +177,6 @@
         </div>
       </div>  
     </div>
-   <script src="https://code.highcharts.com/highcharts.js"></script>
-   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
    <?php require_once '../html/MainJs.php'; ?>
    <script type="text/javascript" src="usuhome.js"></script>
 </body>

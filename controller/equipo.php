@@ -107,7 +107,8 @@ switch ($_GET["op"]) {
         $datos = $equipo->get_productos_por_area();
         echo json_encode($datos);
     break;
-
-   
-
+    case "equipos_por_mes":
+        $datos = $equipo->get_equipos_registrados_por_mes();
+        echo json_encode($datos);
+    break;
 }

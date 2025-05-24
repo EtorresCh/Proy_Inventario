@@ -113,6 +113,23 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-
+        public function get_equipos_registrados_por_mes() {
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT 
+                        TO_CHAR(equi_fech_inv, 'YYYY-MM') AS mes,
+                        COUNT(*) AS cantidad
+                    FROM 
+                        equipo
+                    WHERE 
+                        equi_fech_inv >= (CURRENT_DATE - INTERVAL '6 months')
+                    GROUP BY 
+                        TO_CHAR(equi_fech_inv, 'YYYY-MM')
+                    ORDER BY 
+                        mes;";
+            $stmt = $conectar->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>

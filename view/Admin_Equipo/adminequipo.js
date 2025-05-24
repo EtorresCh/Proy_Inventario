@@ -83,14 +83,14 @@ $(document).ready(function(){
 		},
 	});   
 });  
-function editar(area_id) {
-    $.post("../../controller/area.php?op=mostrar_editar",{ cat_id: cat_id},function(data) {
+function editar(equi_id) {
+    $.post("../../controller/equi.php?op=mostrar_editar",{ equi_id: equi_id},function(data) {
         data=JSON.parse(data);
         $('#cat_id').val(data.cat_id);
         $('#cat_nom').val(data.cat_nom);
         $('#modalarea').modal('hide');
     });
-    $('#modalcategoria').modal('show');
+    $('#modalequipo').modal('show');
     $('#lbltitulo').html('Registro de  Usuario');
 }
 
